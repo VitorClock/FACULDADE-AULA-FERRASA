@@ -29,6 +29,15 @@ app.post('/', (req, res) => {
   
   res.status(201).send(contato);
 });
+
+app.delete('/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const indiceContato = agenda.findIndex((c) => c.id === id);
+    contatoRemovido = agenda.splice(indiceContato, 1);
+
+    res.status(200).send(contatoRemovido);
+});
+
     app.listen(3000);
 
     console.log('Agenda - API WEB executando');
